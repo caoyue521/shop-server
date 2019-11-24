@@ -29,8 +29,13 @@ public class GoodController implements BaseController{
     }
     @ApiOperation("根据类型选择商品")
     @GetMapping("/type/{type}")
-    public ApiResult getListByType(@PathVariable("type") String type){
+    public ApiResult getListByPathType(@PathVariable("type") String type){
         return  goodService.getListByType(type);
+    }
+    @ApiOperation("根据类型查找商品")
+    @GetMapping("/getByType")
+    public ApiResult getListByType(@ApiParam(name="type",value = "商品类型",example ="pop") String type,@RequestParam(required = false) Integer page){
+        return goodService.getListByType(type,page);
     }
     @ApiOperation("添加一个商品")
     @PostMapping("/add")

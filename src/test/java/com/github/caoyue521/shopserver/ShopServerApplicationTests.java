@@ -1,9 +1,11 @@
 package com.github.caoyue521.shopserver;
 
+import com.alibaba.fastjson.JSON;
 import com.github.caoyue521.shopserver.dao.GoodDao;
 import com.github.caoyue521.shopserver.dao.GoodDetailDao;
 import com.github.caoyue521.shopserver.dao.SellerDao;
 import com.github.caoyue521.shopserver.entity.*;
+import com.github.caoyue521.shopserver.model.ApiResult;
 import com.github.caoyue521.shopserver.service.GoodService;
 import com.github.caoyue521.shopserver.service.SellerService;
 import com.github.caoyue521.shopserver.service.UserService;
@@ -97,11 +99,19 @@ class ShopServerApplicationTests {
         List<Good> list = goodDao.findAll();
         for(Good good:list){
             GoodDetail goodDetail = new GoodDetail();
-            goodDetail.setGood_id(good.getId());
             goodDetail.setContent("content"+ new Random().nextInt(100));
             goodDetailDao.save(goodDetail);
         }
 
+    }
+    @Test
+    public void testPage(){
+        String type ="pop";
+        int page =1;
+        ApiResult apiResult = goodService.getListByType(type,page);
+        System.out.println(JSON.toJSONString(apiResult));
+        apiResult = goodService.getListByType(type,page+1);
+        System.out.println(JSON.toJSONString(apiResult));
     }
 
 }

@@ -41,7 +41,7 @@ public class Good {
     @Column(columnDefinition = "json")
     List<String> banners;
     @ApiModelProperty(readOnly = true,required = false,value = "评论列表",  position = 10)
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @Fetch(FetchMode.SELECT)
     @JoinColumn(name = "good_id")
     List<Comment> comments;
