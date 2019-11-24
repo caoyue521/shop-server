@@ -34,7 +34,7 @@ public class GoodController implements BaseController{
     }
     @ApiOperation("根据类型查找商品")
     @GetMapping("/getByType")
-    public ApiResult getListByType(@ApiParam(name="type",value = "商品类型",example ="pop") String type,@RequestParam(required = false) Integer page){
+    public ApiResult getListByType(@ApiParam(name="type",value = "商品类型",example ="pop") @RequestParam(required = true) String type,@RequestParam(required = false) Integer page){
         return goodService.getListByType(type,page);
     }
     @ApiOperation("添加一个商品")
