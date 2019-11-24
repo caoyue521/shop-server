@@ -1,0 +1,46 @@
+plugins {
+    id 'org.springframework.boot' version '2.2.1.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'java'
+}
+
+group = 'com.github.caoyue521'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compile 'io.springfox:springfox-swagger2:2.8.0'
+    compile 'io.springfox:springfox-swagger-ui:2.8.0'
+    compile group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.3'
+    compile 'ch.qos.logback:logback-core:1.2.3'
+    runtime 'ch.qos.logback:logback-classic:1.2.3'
+    compile 'org.apache.commons:commons-lang3:3.4'
+    compile group: 'org.apache.commons', name: 'commons-collections4', version: '4.2'
+    compile group: 'com.alibaba', name: 'fastjson', version: '1.2.60'
+    compile 'com.vladmihalcea:hibernate-types-5:2.2.2'
+    runtime 'org.springframework.boot:spring-boot-starter-jdbc'
+    runtime 'mysql:mysql-connector-java'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
