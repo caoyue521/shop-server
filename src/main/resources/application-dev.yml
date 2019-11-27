@@ -26,3 +26,11 @@ spring:
     port: 6379
     database: 1
     password: mypassword
+security:
+  anonUrlList:
+    - /api/test
+    - /api/user
+    - /swagger-ui.html
+    - /swagger-resources
+    - /webjars
+    - /v2/api-docs
