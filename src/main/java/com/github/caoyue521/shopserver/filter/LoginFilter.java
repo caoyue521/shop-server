@@ -41,6 +41,14 @@ public  class LoginFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        // 允许的访问方法
+        response.setHeader("Access-Control-Allow-Methods","POST, GET, PUT, OPTIONS, DELETE, PATCH");
+        // Access-Control-Max-Age 用于 CORS 相关配置的缓存
+        response.setHeader("Access-Control-Max-Age", "3600");
+        response.setHeader("Access-Control-Allow-Headers","token,Origin, X-Requested-With, Content-Type, Accept");
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json; charset=utf-8");
         boolean isAnon = anonUrlList.stream()
                 .map(anonUrl -> StringUtils.startsWith(request.getRequestURI(), anonUrl))
                 .reduce(Boolean::logicalOr)
